@@ -1,0 +1,18 @@
+{% load static %}
+
+<ul>
+  {% for item in menu_items %}
+    <li>
+      <a href="{{ item.url }}" class="{% if request_path == item.url %}active{% endif %}">{{ item.name }}</a>
+      {% if item.children.all %}
+        <ul>
+          {% for child in item.children.all %}
+            <li>
+              <a href="{{ child.url }}" class="{% if request_path == child.url %}active{% endif %}">{{ child.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
